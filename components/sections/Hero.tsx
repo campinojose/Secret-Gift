@@ -7,17 +7,6 @@ import { ChevronDown } from "lucide-react";
 export function Hero() {
     return (
         <div className="relative h-screen w-full overflow-hidden flex items-center justify-center">
-            {/* Background Image */}
-            <div className="absolute inset-0 z-0">
-                <Image
-                    src="/portadaviaje1.jpg"
-                    alt="Romantic Background"
-                    fill
-                    className="object-cover opacity-60"
-                    priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-rose-50/20 via-rose-100/30 to-rose-50" />
-            </div>
 
             {/* Content */}
             <div className="relative z-10 text-center px-4">
@@ -26,8 +15,9 @@ export function Hero() {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1.5, ease: "easeOut" }}
                 >
-                    <h1 className="text-6xl md:text-8xl font-serif text-slate-800 mb-4 tracking-tight drop-shadow-sm">
-                        4 Años Juntos
+                    <h1 style={{ fontFamily: 'var(--font-heading)' }} className="text-5xl md:text-7xl lg:text-8xl mb-4 tracking-tight leading-tight">
+                        <span className="block text-rose-800 text-6xl bold">Cuatro Años</span>
+                        <span className="block text-3xl md:text-4xl text-rose-600 font-light">Mil recuerdos</span>
                     </h1>
                 </motion.div>
 
@@ -36,8 +26,9 @@ export function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5, duration: 1 }}
                 >
-                    <p className="text-xl md:text-3xl text-slate-700 font-light italic mb-8">
-                        "David & Joshelin"
+                    <p className="text-lg md:text-2xl text-muted font-light italic mb-6 text-blue-900">
+                        126230400 segundos, 2103840 minutos, 35064 horas, 1461 días, 208 semanas, 5 días, 48 meses, 4 años
+
                     </p>
                 </motion.div>
 
@@ -45,11 +36,10 @@ export function Hero() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.2, duration: 1 }}
-                    className="bg-white/40 backdrop-blur-md p-6 rounded-2xl shadow-xl inline-block border border-white/50"
+                    className="glass p-6 rounded-2xl shadow-xl inline-block border border-white/30 max-w-xl"
                 >
-                    <p className="text-lg text-slate-800 max-w-lg font-serif">
-                        Cada día a tu lado es mi momento favorito.<br />
-                        Gracias por hacerme el hombre más feliz del mundo.
+                    <p className="text-base md:text-lg text-rose-800 max-w-lg font-serif">
+                        Un pequeño espacio para celebrar lo que hemos construido juntos.
                     </p>
                 </motion.div>
             </div>

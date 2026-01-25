@@ -5,20 +5,25 @@ import { useEffect, useState } from "react";
 import { Heart } from "lucide-react";
 
 export function FloatingHearts() {
-    const [hearts, setHearts] = useState<{ id: number; x: number; delay: number }[]>([]);
+    const [hearts, setHearts] = useState<{
+        id: number;
+        x: number;
+        size: number;
+        color: string;
+    }[]>([]);
 
     useEffect(() => {
         const interval = setInterval(() => {
             setHearts((prev) => {
                 const newHeart = {
                     id: Date.now(),
-                    x: Math.random() * 100, // Random percentage for left position
-                    delay: 0,
+                    x: Math.random() * 100,
+                    size: 24 + Math.round(Math.random() * 28),
+                    color: Math.random() > 0.5 ? "#ffd1dc" : "#f6d6ff",
                 };
-                // Keep only last 20 hearts to avoid performance issues
-                return [...prev.slice(-20), newHeart];
+                return [...prev.slice(-18), newHeart];
             });
-        }, 1000);
+        }, 800);
 
         return () => clearInterval(interval);
     }, []);
@@ -28,15 +33,20 @@ export function FloatingHearts() {
             {hearts.map((heart) => (
                 <motion.div
                     key={heart.id}
-                    initial={{ y: "110vh", opacity: 0 }}
-                    animate={{ y: "-10vh", opacity: [0, 1, 0] }}
-                    transition={{ duration: 10, ease: "linear" }}
+                    initial={{ y: "110vh", opacity: 0, scale: 0.6 }}
+                    animate={{ y: "-10vh", opacity: [0.2, 0.9, 0], scale: [0.6, 1, 0.9] }}
+                    transition={{ duration: 9 + Math.random() * 6, ease: "easeInOut" }}
                     style={{
                         position: "absolute",
                         left: `${heart.x}%`,
+                        mixBlendMode: "screen",
                     }}
                 >
-                    <Heart className="text-rose-200 fill-rose-100 w-8 h-8 opacity-50" />
+                    <Heart
+                        style={{ width: heart.size, height: heart.size }}
+                        className="opacity-80"
+                        color={heart.color}
+                    />
                 </motion.div>
             ))}
         </div>

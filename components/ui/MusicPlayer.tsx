@@ -6,73 +6,69 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export function MusicPlayer() {
     const [isPlaying, setIsPlaying] = useState(false);
-    const [isMuted, setIsMuted] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-    const audioRef = useRef<HTMLAudioElement | null>(null);
+    const [autoplayBlocked, setAutoplayBlocked] = useState(false);
+    const embedId = "Y3UH_9ZV1-A"; // YouTube music id from user link
 
+    // Try to start playback on mount by opening the iframe with autoplay=1.
     useEffect(() => {
-        audioRef.current = new Audio("/song.mp3"); // Expects song.mp3 in public folder
-        audioRef.current.loop = true;
+        // Attempt autoplay; browsers may block unmuted autoplay.
+        setIsOpen(true);
+        setIsPlaying(true);
 
-        return () => {
-            audioRef.current?.pause();
-            audioRef.current = null;
-        };
+        // if autoplay is blocked, the user will need to interact; show a gentle CTA
+        const timer = setTimeout(() => {
+            setAutoplayBlocked(true);
+        }, 1500);
+
+        return () => clearTimeout(timer);
     }, []);
-
-    const togglePlay = () => {
-        if (!audioRef.current) return;
-
-        if (isPlaying) {
-            audioRef.current.pause();
-        } else {
-            audioRef.current.play().catch(() => {
-                console.log("Autoplay blocked");
-            });
-        }
-        setIsPlaying(!isPlaying);
-    };
-
-    const toggleMute = () => {
-        if (!audioRef.current) return;
-        audioRef.current.muted = !isMuted;
-        setIsMuted(!isMuted);
-    };
 
     return (
         <div className="fixed bottom-6 right-6 z-50 flex items-end flex-col gap-2">
+            {/* Keep iframe mounted so music continues when panel is closed */}
+            <div aria-hidden className="sr-only">
+                <iframe
+                    title="música-hidden"
+                    src={`https://www.youtube.com/embed/${embedId}?autoplay=${isPlaying ? '1' : '0'}&controls=0&loop=1&playlist=${embedId}&rel=0&modestbranding=1`}
+                    allow="autoplay; encrypted-media"
+                    className="w-0 h-0"
+                />
+            </div>
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
                         initial={{ opacity: 0, y: 20, scale: 0.8 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.8 }}
-                        className="bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-rose-100 w-64 mb-2"
+                        className="glass p-4 rounded-2xl shadow-2xl border border-white/20 w-72 mb-2"
                     >
                         <div className="flex items-center gap-3 mb-3">
-                            <div className="w-10 h-10 bg-rose-100 rounded-full flex items-center justify-center animate-spin-slow">
-                                <Music className="w-5 h-5 text-rose-500" />
+                            <div className="w-10 h-10 bg-rose-100/60 rounded-full flex items-center justify-center animate-spin-slow">
+                                <Music className="w-5 h-5 text-rose-700" />
                             </div>
                             <div className="overflow-hidden">
-                                <p className="text-sm font-bold text-slate-800 truncate">Nuestra Canción</p>
-                                <p className="text-xs text-rose-500 truncate">Perfect - Ed Sheeran</p>
+                                <p className="text-sm font-bold text-slate-800 truncate">Te amo vida mía</p>
+                                <p className="text-xs text-rose-500 truncate">(YouTube Music)</p>
+                            </div>
+                        </div>
+
+                        <div className="mb-3">
+                            {/* Visible preview when panel open (not required for playback) */}
+                            <div className="w-full h-24 rounded overflow-hidden">
+                                <iframe
+                                    title="música-preview"
+                                    src={`https://www.youtube.com/embed/${embedId}?controls=0&loop=1&playlist=${embedId}&rel=0&modestbranding=1`}
+                                    allow="encrypted-media"
+                                    className="w-full h-full"
+                                />
                             </div>
                         </div>
 
                         <div className="flex items-center justify-between">
-                            <button
-                                onClick={toggleMute}
-                                className="p-2 hover:bg-rose-50 rounded-full transition-colors"
-                            >
-                                {isMuted ? (
-                                    <VolumeX className="w-5 h-5 text-slate-500" />
-                                ) : (
-                                    <Volume2 className="w-5 h-5 text-slate-500" />
-                                )}
-                            </button>
 
                             <button
-                                onClick={togglePlay}
+                                onClick={() => { setIsPlaying((s) => !s); }}
                                 className="w-10 h-10 bg-rose-500 rounded-full flex items-center justify-center text-white shadow-lg hover:bg-rose-600 transition-transform active:scale-95"
                             >
                                 {isPlaying ? (

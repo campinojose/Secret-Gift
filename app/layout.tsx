@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Playfair_Display, Inter, Montserrat } from "next/font/google";
 import "./globals.css";
+import DynamicBackground from "@/components/ui/DynamicBackground";
+import CountdownOverlay from "@/components/ui/CountdownOverlay";
 
 const playfair = Playfair_Display({
   variable: "--font-serif",
@@ -10,6 +12,12 @@ const playfair = Playfair_Display({
 const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
+});
+
+const montserrat = Montserrat({
+  variable: "--font-heading",
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -25,9 +33,21 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${playfair.variable} ${inter.variable} antialiased font-sans bg-rose-50 text-slate-900`}
+        className={`${playfair.variable} ${inter.variable} ${montserrat.variable} antialiased font-sans`}
       >
-        {children}
+        <style>{`
+          /* Oculta scrollbars pero permite scroll funcional */
+          html, body {
+            -ms-overflow-style: none; /* IE 10+ */
+            scrollbar-width: none; /* Firefox */
+          }
+          html::-webkit-scrollbar, body::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+          }
+        `}</style>
+        <CountdownOverlay />
+        <DynamicBackground />
+        <div className="page-container">{children}</div>
       </body>
     </html>
   );

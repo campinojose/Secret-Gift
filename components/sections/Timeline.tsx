@@ -8,16 +8,16 @@ import Image from "next/image";
 const milestones = [
     {
         year: "Año 1",
-        title: "El Comienzo",
-        description: "Cuando nuestras miradas se cruzaron y supimos que esto sería especial. Nuestra primera cita, los primeros nervios, el primer beso.",
+        title: "Aprendizaje",
+        description: "He decidido llamar a este año Aprendizaje porque fue cuando empezamos a conocernos y descubrir el significado del amor.",
         icon: Heart,
         color: "bg-rose-100 text-rose-600",
         image: "/1ano.jpg",
     },
     {
         year: "Año 2",
-        title: "Aventuras",
-        description: "Viajes, risas y descubriendo el mundo juntos. Cada lugar que visitamos se convirtió en un recuerdo imborrable.",
+        title: "Exploración",
+        description: "Mediante salidas, risas , besos y abrazos íbamos descubriendo el mundo juntos. Cada lugar que visitamos se convirtió en un recuerdo imborrable.",
         icon: MapPin,
         color: "bg-amber-100 text-amber-600",
         image: "/2ano.jpg",
@@ -44,7 +44,8 @@ export function Timeline() {
     return (
         <Section className="relative">
             <h2 className="text-4xl md:text-5xl font-serif text-center mb-16 text-rose-900">
-                Nuestra Historia
+                A través del tiempo hemos recopilado estos momentos especiales<br/><br />
+                ¡Disfrútalos!
             </h2>
 
             <div className="relative">
