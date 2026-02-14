@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0%" stop-color="#ff9a9e"/>
+      <stop offset="50%" stop-color="#fad0c4"/>
+      <stop offset="100%" stop-color="#fbc2eb"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="50%" cy="20%">
+      <stop offset="0%" stop-color="#fff7f8" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ffd1dc" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#g)" />
+
+  <g transform="translate(600,300)">
+    <path d="M0-80 C60-140 180-140 240-80 C300-20 300 60 240 120 C180 180 60 200 0 140 C-60 200 -180 180 -240 120 C-300 60 -300 -20 -240 -80 C-180 -140 -60 -140 0-80 Z" fill="#ffffff" fill-opacity="0.06" transform="scale(1.4)"/>
+    <path d="M0-70 C50-115 140-115 190-70 C240-25 240 45 190 95 C140 145 50 160 0 115 C-50 160 -140 145 -190 95 C-240 45 -240 -25 -190 -70 C-140 -115 -50 -115 0-70 Z" fill="#ffffff" fill-opacity="0.08"/>
+  </g>
+
+  <g transform="translate(360,380) scale(1.2)">
+    <path d="M300 150 C300 60 220 20 180 0 C140 -20 80 -10 50 10 C20 30 10 60 10 90 C10 130 40 170 80 210 C120 250 180 300 240 300 C300 300 360 260 420 210 C460 175 490 140 520 100 C550 60 540 20 500 10 C460 0 420 20 380 40 C340 60 300 80 300 150 Z" fill="#ffffff" fill-opacity="0.12"/>
+  </g>
+
+  <g transform="translate(200,500)">
+    <ellipse cx="0" cy="0" rx="280" ry="60" fill="url(#sun)" />
+  </g>
+
+  <g transform="translate(820,520)">
+    <g transform="rotate(-12)">
+      <path d="M0 0 C40 -40 90 -40 130 0 C170 40 170 110 130 150 C90 190 40 220 0 180 C-40 220 -90 190 -130 150 C-170 110 -170 40 -130 0 C-90 -40 -40 -40 0 0 Z" fill="#ffffff" fill-opacity="0.06"/>
+      <path d="M0 0 C28 -28 64 -28 92 0 C120 28 120 76 92 104 C64 132 28 152 0 120 C-28 152 -64 132 -92 104 C-120 76 -120 28 -92 0 C-64 -28 -28 -28 0 0 Z" fill="#ffffff" fill-opacity="0.08" transform="scale(0.8) translate(10,10)"/>
+    </g>
+  </g>
+
+  <g transform="translate(180,220)">
+    <text x="0" y="0" font-family="Montserrat, Arial, sans-serif" font-size="32" fill="#ffffff" fill-opacity="0.6">Siempre juntos</text>
+  </g>
+</svg>
