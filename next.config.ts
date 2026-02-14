@@ -1,10 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export", // Generates a static HTML/CSS/JS export
-  basePath: "/Secret-Gift", // Necessary for GitHub Pages subfolder deployment
+  output: "export",
+  basePath: "/Secret-Gift",
+  assetPrefix: "/Secret-Gift",
+  trailingSlash: true,
   images: {
-    unoptimized: true, // GitHub Pages doesn't support Next.js image optimization
+    unoptimized: true,
   },
 };
 
