@@ -1,5 +1,4 @@
 import { FloatingHearts } from "@/components/ui/FloatingHearts";
-import { MusicPlayer } from "@/components/ui/MusicPlayer";
 import { Hero } from "@/components/sections/Hero";
 import { Timeline } from "@/components/sections/Timeline";
 import { OrganizedGallery } from "@/components/sections/OrganizedGallery";
@@ -10,7 +9,6 @@ export default function Home() {
   return (
     <main className="relative min-h-screen">
       <FloatingHearts />
-      <MusicPlayer />
 
       <Hero />
 

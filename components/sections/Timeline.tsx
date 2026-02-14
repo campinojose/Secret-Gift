@@ -36,7 +36,7 @@ const milestones = [
         description: "Cuatro años de amor incondicional. Y esto es solo el principio de nuestra historia.",
         icon: Calendar,
         color: "bg-emerald-100 text-emerald-600",
-        image: "/4ano.jpg",
+        image: "/ano4.jpeg",
     },
 ];
 
